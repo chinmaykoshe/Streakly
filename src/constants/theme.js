@@ -40,13 +40,3 @@ export const FONT = {
   '3xl': 30,
   '4xl': 38,
 };
-
-// Keep old exports alive so leftover template code doesn't crash
-export const Colors = {
-  light: { text: '#000', background: '#fff', backgroundElement: '#F0F0F3', backgroundSelected: '#E0E1E6', textSecondary: '#60646C' },
-  dark: { text: '#fff', background: '#000', backgroundElement: '#212225', backgroundSelected: '#2E3135', textSecondary: '#B0B4BA' },
-};
-export const Fonts = { sans: 'system-ui', serif: 'serif', rounded: 'normal', mono: 'monospace' };
-export const Spacing = { half: 2, one: 4, two: 8, three: 16, four: 24, five: 32, six: 64 };
-export const BottomTabInset = 80;
-export const MaxContentWidth = 800;

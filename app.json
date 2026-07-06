@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "snapnotifier",
-    "slug": "snapnotifier",
+    "name": "Streakly",
+    "slug": "streakly",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "snapnotifier",
+    "scheme": "streakly",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.chinmaykoshe.streakly"
     },
     "android": {
+      "package": "com.chinmaykoshe.streakly",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -31,6 +33,29 @@
           "backgroundColor": "#208AEF",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/icon.png",
+          "color": "#ffffff"
+        }
+      ],
+      [
+        "react-native-android-widget",
+        {
+          "widgets": [
+            {
+              "name": "StreakWidget",
+              "label": "Streak Reminder",
+              "minWidth": "40dp",
+              "minHeight": "40dp",
+              "description": "Streak Reminder Widget",
+              "previewImage": "./assets/images/icon.png",
+              "updatePeriodMillis": 86400000
+            }
+          ]
         }
       ]
     ],
