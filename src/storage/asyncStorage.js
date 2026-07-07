@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DefaultPreference from 'react-native-default-preference';
 
 export const STORE_KEYS = {
   REMINDERS: '@sr_reminders_v4',
@@ -101,12 +102,31 @@ export const DEFAULT_REMINDERS = [
 ];
 
 export const getReminders = async () => {
+  if (Platform.OS === 'android') {
+    try {
+      await DefaultPreference.setName('react-native-default-preference');
+      const raw = await DefaultPreference.get(STORE_KEYS.REMINDERS);
+      if (raw) {
+        return JSON.parse(raw);
+      }
+    } catch (e) {
+      console.log('[Storage] Failed to read from DefaultPreference', e);
+    }
+  }
   const data = await getData(STORE_KEYS.REMINDERS);
   return Array.isArray(data) ? data : DEFAULT_REMINDERS;
 };
 
 export const saveReminders = async (reminders) => {
   await storeData(STORE_KEYS.REMINDERS, reminders);
+  if (Platform.OS === 'android') {
+    try {
+      await DefaultPreference.setName('react-native-default-preference');
+      await DefaultPreference.set(STORE_KEYS.REMINDERS, JSON.stringify(reminders));
+    } catch (e) {
+      console.log('[Storage] Failed to save to DefaultPreference', e);
+    }
+  }
 };
 
 /**
