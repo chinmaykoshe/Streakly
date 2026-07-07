@@ -67,7 +67,7 @@ export const scheduleReminderNotification = async (id, title, body, hour, minute
     identifier: id,
     content: { title, body, sound: true, data: { reminderId: id } },
     trigger: {
-      type: N.SchedulableTriggerInputTypes?.DAILY || 'daily',
+      type: 'daily',
       hour,
       minute,
     },
@@ -82,6 +82,7 @@ export const scheduleIntervalNotification = async (id, title, body, intervalSeco
     identifier: id,
     content: { title, body, sound: true, data: { reminderId: id } },
     trigger: {
+      type: 'timeInterval',
       seconds: intervalSeconds,
       repeats: true,
     },
@@ -95,7 +96,7 @@ export const scheduleSnoozeNotification = async (id, title, body, delayMinutes) 
   return N.scheduleNotificationAsync({
     identifier: `${id}_snooze`,
     content: { title: `⏰ Snoozed: ${title}`, body, sound: true },
-    trigger: { seconds: delayMinutes * 60 },
+    trigger: { type: 'timeInterval', seconds: delayMinutes * 60 },
   });
 };
 
